@@ -247,6 +247,8 @@ export function Experience() {
                 <a
                   href={resumePdfUrl}
                   download={resumeDownloadName}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-green/20 bg-white px-4 py-2.5 text-sm font-semibold text-text shadow-sm transition-all hover:border-green/35 hover:bg-green-pale hover:text-green-dark hover:shadow-md hover:shadow-green/10 sm:px-5 sm:py-3"
                 >
                   <Download className="h-4 w-4 shrink-0" strokeWidth={2} />

@@ -85,6 +85,8 @@ export function Hero() {
               <MagneticButton
                 href={resumePdfUrl}
                 download={resumeDownloadName}
+                target="_blank"
+                rel="noopener noreferrer"
                 variant="secondary"
                 showArrow={false}
                 className="h-[3.25rem] w-full px-8 sm:w-auto"

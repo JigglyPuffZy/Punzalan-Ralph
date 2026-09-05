@@ -8,6 +8,8 @@ interface MagneticButtonProps {
   children: ReactNode;
   href?: string;
   download?: string;
+  target?: string;
+  rel?: string;
   onClick?: () => void;
   variant?: "primary" | "secondary" | "ghost";
   className?: string;
@@ -18,6 +20,8 @@ export function MagneticButton({
   children,
   href,
   download,
+  target,
+  rel,
   onClick,
   variant = "primary",
   className = "",
@@ -65,6 +69,8 @@ export function MagneticButton({
         ref={ref as React.RefObject<HTMLAnchorElement>}
         href={href}
         download={download}
+        target={target}
+        rel={rel}
         onClick={onClick}
         className={`group ${baseStyles} ${variants[variant]} ${className}`}
         onMouseMove={handleMouseMove}
