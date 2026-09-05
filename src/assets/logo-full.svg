@@ -1,0 +1,31 @@
+<svg width="960" height="540" viewBox="0 0 960 540" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">R4lph developer logo</title>
+  <desc id="desc">A premium monochrome vector logo featuring a custom geometric R4lph-inspired R centered between angle brackets and a slash.</desc>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="45%">
+      <stop offset="0%" stop-color="white" stop-opacity="0.18"/>
+      <stop offset="62%" stop-color="white" stop-opacity="0.035"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" stroke="white" stroke-opacity="0.08"/>
+      <circle cx="0" cy="0" r="1.2" fill="white" fill-opacity="0.22"/>
+    </pattern>
+    <filter id="soft-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.65 0"/>
+      <feBlend in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="960" height="540" fill="#050505"/>
+  <rect width="960" height="540" fill="url(#grid)"/>
+  <rect width="960" height="540" fill="url(#glow)"/>
+  <g filter="url(#soft-glow)">
+    <path d="M350 176L256 270L350 364" stroke="white" stroke-width="34" stroke-linecap="square" stroke-linejoin="miter"/>
+    <path d="M610 176L704 270L610 364" stroke="white" stroke-width="34" stroke-linecap="square" stroke-linejoin="miter"/>
+    <path d="M562 388L628 152" stroke="white" stroke-width="34" stroke-linecap="square"/>
+    <path d="M406 152H502C546 152 578 181 578 224C578 260 554 286 518 293L584 388H532L472 300H448V388H406V152ZM448 190V262H498C522 262 538 248 538 225C538 202 522 190 498 190H448Z" fill="white"/>
+  </g>
+  <text x="480" y="432" text-anchor="middle" fill="white" fill-opacity="0.78" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="12">R4LPH</text>
+  <text x="480" y="474" text-anchor="middle" fill="white" fill-opacity="0.46" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="10">DEVELOPER • DESIGNER • BUILDER</text>
+</svg>

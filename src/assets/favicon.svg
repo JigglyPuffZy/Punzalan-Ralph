@@ -1,0 +1,9 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="R slash favicon">
+  <rect width="64" height="64" rx="32" fill="#050505"/>
+  <circle cx="32" cy="32" r="30.5" stroke="white" stroke-opacity="0.16"/>
+  <circle cx="32" cy="32" r="22" fill="white" fill-opacity="0.04"/>
+  <path d="M19.5 20L11.5 32L19.5 44" stroke="white" stroke-width="4.4" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M44.5 20L52.5 32L44.5 44" stroke="white" stroke-width="4.4" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M40.5 45.5L48 18.5" stroke="white" stroke-width="4.4" stroke-linecap="square"/>
+  <path d="M24.5 18.5H33.5C38.5 18.5 42 21.7 42 26.4C42 30.3 39.2 33.2 35.2 33.9L42.5 45.5H36.5L30.6 34.8H29.5V45.5H24.5V18.5ZM29.5 23V30.6H33.1C35.4 30.6 36.9 29.1 36.9 26.8C36.9 24.4 35.4 23 33.1 23H29.5Z" fill="white"/>
+</svg>
