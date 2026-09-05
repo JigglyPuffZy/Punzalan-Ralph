@@ -1,4 +1,5 @@
 import profilePhoto from "../assets/profile.jpg";
+import resumePdf from "../assets/Ralph_Matthew_Punzalan_Resume.pdf";
 
 export interface SkillGroup {
   id: string;
@@ -141,7 +142,7 @@ export const socialLinks = [
 
 export const contactEmail = "ralphmatthewpunzalan23@gmail.com";
 
-export const resumePdfUrl = "#";
+export const resumePdfUrl = resumePdf;
 export const resumeDownloadName = "R4lph-Punzalan-Resume.pdf";
 
 export const heroSocialLinks = [
