@@ -39,7 +39,7 @@ function getPreviewSizeClass(
     project.category === "cms";
 
   if (variant === "hero") {
-    return "aspect-[4/3] min-h-[220px] rounded-lg sm:aspect-[16/10] sm:min-h-[240px]";
+    return "h-[168px] rounded-lg sm:aspect-[16/10] sm:h-auto sm:min-h-[240px]";
   }
 
   if (variant === "card") {
@@ -325,42 +325,42 @@ function CaseStudyRow({
     <article className="group relative">
       {index > 0 && <div className="section-divider mb-12 sm:mb-16" aria-hidden="true" />}
 
-      <div className="glass-panel relative overflow-hidden rounded-2xl p-3 transition-all duration-500 hover:shadow-[0_20px_50px_-12px_rgba(34,197,94,0.18)] sm:rounded-[1.75rem] sm:p-7 lg:p-8">
+      <div className="rounded-2xl border border-border/60 bg-white p-4 shadow-sm sm:glass-panel sm:border-transparent sm:p-7 sm:shadow-none lg:p-8">
           <div
             className={cn(
-              "grid items-start gap-5 sm:items-center sm:gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-14",
-              reverse && "[&>*:first-child]:lg:order-2 [&>*:last-child]:lg:order-1",
+              "flex flex-col gap-5 sm:items-center sm:gap-8 lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-14",
             )}
           >
-            <div className="relative min-w-0 transition-transform duration-700 ease-out group-hover:-translate-y-1">
-              <ProjectPreview project={project} variant="hero" />
-            </div>
-
-            <div className="relative flex min-w-0 flex-col lg:py-1">
+            <div
+              className={cn(
+                "order-1 flex min-w-0 flex-col lg:py-1",
+                reverse ? "lg:order-1" : "lg:order-2",
+              )}
+            >
               <div className="flex flex-wrap items-center gap-2">
                 {featured ? (
                   <span className="inline-flex items-center rounded-full bg-green px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white shadow-sm shadow-green/25">
                     Featured
                   </span>
                 ) : null}
-                <span className="glass-chip inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-text-secondary">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-off-white px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-text-secondary">
                   <Icon className="h-3 w-3 text-green-dark/80" aria-hidden="true" />
                   {categoryLabels[project.category]}
                 </span>
               </div>
 
-              <h3 className="mt-4 font-heading text-[clamp(1.5rem,5vw,2.45rem)] font-semibold leading-[1.15] text-text sm:mt-5">
+              <h3 className="mt-3 font-heading text-2xl font-semibold leading-[1.15] text-text sm:mt-4 sm:text-[clamp(1.75rem,3vw,2.45rem)]">
                 {project.title}
               </h3>
 
               {(project.role || project.period) && (
-                <p className="mt-2.5 text-sm font-medium leading-relaxed text-text-secondary sm:mt-3 sm:text-base">
+                <p className="mt-2 text-sm font-medium leading-relaxed text-text-secondary sm:text-base">
                   {[project.role, project.period].filter(Boolean).join(" · ")}
                 </p>
               )}
 
               {project.description && (
-                <p className="glass-panel-soft mt-4 rounded-2xl px-4 py-3.5 text-[0.9375rem] leading-[1.75] text-text-secondary sm:mt-5 sm:text-base sm:leading-relaxed">
+                <p className="mt-3 text-[0.9375rem] leading-[1.75] text-text-secondary sm:mt-4 sm:rounded-2xl sm:bg-off-white/80 sm:px-4 sm:py-3.5 sm:text-base sm:leading-relaxed">
                   {project.description}
                 </p>
               )}
@@ -370,12 +370,21 @@ function CaseStudyRow({
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white shadow-md shadow-green/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-lg hover:shadow-green/35 sm:mt-7 sm:w-fit sm:justify-start hover:gap-3"
+                  className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white shadow-md shadow-green/30 transition-all duration-300 hover:bg-green-dark sm:mt-6 sm:w-fit sm:justify-start lg:mt-7"
                 >
                   {projectLinkLabel(project)}
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
               ) : null}
+            </div>
+
+            <div
+              className={cn(
+                "order-2 min-w-0 lg:transition-transform lg:duration-700 lg:ease-out lg:group-hover:-translate-y-1",
+                reverse ? "lg:order-2" : "lg:order-1",
+              )}
+            >
+              <ProjectPreview project={project} variant="hero" />
             </div>
           </div>
       </div>
@@ -442,6 +451,68 @@ function ProjectGridCard({ project }: { project: Project }) {
   );
 }
 
+function CategoryFilterNav({
+  activeCategory,
+  onSelect,
+  counts,
+  layout = "horizontal",
+}: {
+  activeCategory: ProjectCategory;
+  onSelect: (id: ProjectCategory) => void;
+  counts: Record<ProjectCategory, number>;
+  layout?: "horizontal" | "vertical";
+}) {
+  return (
+    <nav
+      className={cn(
+        "flex gap-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+        layout === "horizontal"
+          ? "-mx-1 overflow-x-auto px-1 pb-0.5"
+          : "mx-0 mt-3 flex-col overflow-visible px-0 pb-0",
+      )}
+      aria-label="Project categories"
+    >
+      {projectCategories.map((cat) => {
+        const isActive = activeCategory === cat.id;
+        const Icon = categoryIcons[cat.id];
+
+        return (
+          <button
+            key={cat.id}
+            type="button"
+            onClick={() => onSelect(cat.id)}
+            className={cn(
+              "relative flex shrink-0 items-center gap-2 overflow-hidden rounded-full px-3.5 py-2 text-left text-sm font-medium transition-all duration-300 sm:px-4 sm:py-2.5",
+              layout === "vertical" && "w-full rounded-xl py-3",
+              isActive
+                ? "bg-green text-white shadow-md shadow-green/25"
+                : "border border-border/70 bg-white text-text-secondary hover:border-green/30 hover:text-green-dark dark:border-white/10 dark:bg-[#111827]",
+            )}
+          >
+            {isActive && layout === "vertical" && (
+              <span
+                className="absolute inset-y-2 left-1 w-1 rounded-full bg-white/70"
+                aria-hidden="true"
+              />
+            )}
+            <Icon className={cn("h-4 w-4 shrink-0", isActive ? "text-white" : "text-green-dark/70")} />
+            <span>{cat.label}</span>
+            <span
+              className={cn(
+                "rounded-full px-1.5 py-0.5 text-[11px] font-semibold tabular-nums",
+                layout === "vertical" && "ml-auto px-2",
+                isActive ? "bg-white/20 text-white" : "bg-green-pale text-green-dark dark:bg-green/10",
+              )}
+            >
+              {counts[cat.id]}
+            </span>
+          </button>
+        );
+      })}
+    </nav>
+  );
+}
+
 function CategorySidebar({
   activeCategory,
   onSelect,
@@ -453,53 +524,16 @@ function CategorySidebar({
 }) {
   return (
     <aside className="lg:sticky lg:top-24 lg:self-start">
-      <p className="mb-2 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-text-secondary lg:hidden">
-        Filter projects
-      </p>
       <div className="lg:glass-panel lg:rounded-2xl lg:p-5">
         <p className="hidden text-xs font-semibold uppercase tracking-[0.18em] text-text-secondary lg:block">
           Browse by discipline
         </p>
-        <nav
-          className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:mx-0 lg:mt-3 lg:flex-col lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden"
-          aria-label="Project categories"
-        >
-          {projectCategories.map((cat) => {
-            const isActive = activeCategory === cat.id;
-            const Icon = categoryIcons[cat.id];
-
-            return (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => onSelect(cat.id)}
-                className={cn(
-                  "relative flex shrink-0 items-center gap-2 overflow-hidden rounded-full px-3.5 py-2 text-left text-sm font-medium transition-all duration-300 sm:px-4 sm:py-2.5 lg:w-full lg:rounded-xl lg:py-3",
-                  isActive
-                    ? "bg-green text-white shadow-md shadow-green/25"
-                    : "border border-border/70 bg-white text-text-secondary hover:border-green/30 hover:text-green-dark dark:border-white/10 dark:bg-[#111827]",
-                )}
-              >
-                {isActive && (
-                  <span
-                    className="absolute inset-y-2 left-1 hidden w-1 rounded-full bg-white/70 lg:block"
-                    aria-hidden="true"
-                  />
-                )}
-                <Icon className={cn("h-4 w-4 shrink-0", isActive ? "text-white" : "text-green-dark/70")} />
-                <span>{cat.label}</span>
-                <span
-                  className={cn(
-                    "rounded-full px-1.5 py-0.5 text-[11px] font-semibold tabular-nums lg:ml-auto lg:px-2",
-                    isActive ? "bg-white/20 text-white" : "bg-green-pale text-green-dark dark:bg-green/10",
-                  )}
-                >
-                  {counts[cat.id]}
-                </span>
-              </button>
-            );
-          })}
-        </nav>
+        <CategoryFilterNav
+          activeCategory={activeCategory}
+          onSelect={onSelect}
+          counts={counts}
+          layout="vertical"
+        />
       </div>
 
       <div className="glass-panel-soft mt-5 hidden rounded-2xl p-5 lg:block">
@@ -541,28 +575,37 @@ export function Projects() {
         aria-hidden="true"
       />
 
-      <SectionIntro section="projects" id="projects-title">
+      <SectionIntro section="projects" id="projects-title" className="[&_header]:mb-6 sm:[&_header]:mb-10">
         <div className="flex flex-wrap items-center justify-center gap-2 px-1 sm:gap-2.5">
-          <span className="glass-chip rounded-full px-3 py-1.5 text-xs font-medium text-text sm:px-4 sm:py-2 sm:text-sm">
+          <span className="rounded-full border border-border/70 bg-white px-3 py-1.5 text-xs font-medium text-text sm:px-4 sm:py-2 sm:text-sm">
             {projects.length} total projects
           </span>
-          <span className="glass-chip rounded-full border-green/15 px-3 py-1.5 text-xs font-medium text-green-dark sm:px-4 sm:py-2 sm:text-sm">
+          <span className="rounded-full border border-green/20 bg-green-pale px-3 py-1.5 text-xs font-medium text-green-dark sm:px-4 sm:py-2 sm:text-sm">
             {totalFeatured} featured case studies
           </span>
         </div>
       </SectionIntro>
 
-      <SectionContent width="wide" className="relative">
+      <div className="sticky top-[4.75rem] z-30 -mx-1 border-y border-border/50 bg-off-white/95 px-1 py-3 backdrop-blur-md sm:top-[5.25rem] lg:hidden">
+        <CategoryFilterNav
+          activeCategory={activeCategory}
+          onSelect={setActiveCategory}
+          counts={counts}
+          layout="horizontal"
+        />
+      </div>
+
+      <SectionContent width="wide" className="relative mt-4 sm:mt-6">
         <div className="grid gap-5 sm:gap-8 lg:grid-cols-[minmax(0,16rem)_1fr] lg:gap-12 xl:grid-cols-[minmax(0,17.5rem)_1fr] xl:gap-14">
-          <ScrollReveal delay={0.05} className="order-1">
+          <div className="hidden lg:block">
             <CategorySidebar
               activeCategory={activeCategory}
               onSelect={setActiveCategory}
               counts={counts}
             />
-          </ScrollReveal>
+          </div>
 
-          <div className="order-2 min-w-0">
+          <div className="min-w-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeCategory}
@@ -570,7 +613,7 @@ export function Projects() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="space-y-12 sm:space-y-14"
+                className="space-y-8 sm:space-y-14"
               >
                 {filtered.length === 0 ? (
                   <p className="rounded-2xl border border-border bg-white py-16 text-center text-text-secondary">
