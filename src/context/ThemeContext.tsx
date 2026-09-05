@@ -16,8 +16,10 @@ interface ThemeContextValue {
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 function getInitialTheme(): Theme {
-  if (typeof document === "undefined") return "light";
-  return document.documentElement.classList.contains("dark") ? "dark" : "light";
+  if (typeof window === "undefined") return "light";
+  const stored = localStorage.getItem("theme");
+  if (stored === "dark" || stored === "light") return stored;
+  return "light";
 }
 
 function applyTheme(theme: Theme) {
