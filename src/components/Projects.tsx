@@ -39,7 +39,7 @@ function getPreviewSizeClass(
     project.category === "cms";
 
   if (variant === "hero") {
-    return "aspect-[16/10] min-h-[200px] max-h-[280px] rounded-lg sm:min-h-[240px] sm:max-h-none";
+    return "aspect-[4/3] min-h-[220px] rounded-lg sm:aspect-[16/10] sm:min-h-[240px]";
   }
 
   if (variant === "card") {
@@ -62,10 +62,7 @@ function getPreviewImageClass(project: Project, variant: "hero" | "card" | "thum
 
   if (fitContain) {
     return cn(
-      "h-full w-full transition-transform duration-700",
-      variant === "hero"
-        ? "object-cover object-top group-hover/preview:scale-[1.02] sm:object-contain sm:object-center sm:p-2"
-        : "object-contain object-center p-1 sm:p-1.5 group-hover/preview:scale-[1.02]",
+      "h-full w-full object-contain object-center p-2 transition-transform duration-700 group-hover/preview:scale-[1.02] sm:p-2.5",
     );
   }
 
@@ -92,8 +89,10 @@ function PreviewFrame({
   return (
     <div
       className={cn(
-        "overflow-hidden bg-white shadow-[0_20px_50px_-20px_rgba(15,23,42,0.35)] ring-1 ring-border/60",
-        variant === "hero" ? "rounded-xl sm:rounded-[1.15rem]" : "rounded-xl",
+        "overflow-hidden bg-white ring-1 ring-border/60",
+        variant === "hero"
+          ? "rounded-xl shadow-[0_12px_32px_-16px_rgba(15,23,42,0.28)] sm:rounded-[1.15rem] sm:shadow-[0_20px_50px_-20px_rgba(15,23,42,0.35)]"
+          : "rounded-xl shadow-[0_20px_50px_-20px_rgba(15,23,42,0.35)]",
       )}
     >
       <div className="flex items-center gap-2 border-b border-border/60 bg-off-white/90 px-3 py-2 sm:px-4 sm:py-2.5">
@@ -326,18 +325,18 @@ function CaseStudyRow({
     <article className="group relative">
       {index > 0 && <div className="section-divider mb-12 sm:mb-16" aria-hidden="true" />}
 
-      <div className="glass-panel relative overflow-hidden rounded-2xl p-4 transition-all duration-500 hover:shadow-[0_20px_50px_-12px_rgba(34,197,94,0.18)] sm:rounded-[1.75rem] sm:p-7 lg:p-8">
+      <div className="glass-panel relative overflow-hidden rounded-2xl p-3 transition-all duration-500 hover:shadow-[0_20px_50px_-12px_rgba(34,197,94,0.18)] sm:rounded-[1.75rem] sm:p-7 lg:p-8">
           <div
             className={cn(
-              "grid items-center gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-14",
+              "grid items-start gap-5 sm:items-center sm:gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-14",
               reverse && "[&>*:first-child]:lg:order-2 [&>*:last-child]:lg:order-1",
             )}
           >
-            <div className="relative transition-transform duration-700 ease-out group-hover:-translate-y-1">
+            <div className="relative min-w-0 transition-transform duration-700 ease-out group-hover:-translate-y-1">
               <ProjectPreview project={project} variant="hero" />
             </div>
 
-            <div className="relative flex flex-col lg:py-1">
+            <div className="relative flex min-w-0 flex-col lg:py-1">
               <div className="flex flex-wrap items-center gap-2">
                 {featured ? (
                   <span className="inline-flex items-center rounded-full bg-green px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white shadow-sm shadow-green/25">
@@ -350,18 +349,18 @@ function CaseStudyRow({
                 </span>
               </div>
 
-              <h3 className="mt-5 font-heading text-[clamp(1.75rem,3vw,2.45rem)] font-semibold leading-[1.12] text-text">
+              <h3 className="mt-4 font-heading text-[clamp(1.5rem,5vw,2.45rem)] font-semibold leading-[1.15] text-text sm:mt-5">
                 {project.title}
               </h3>
 
               {(project.role || project.period) && (
-                <p className="mt-3 text-sm font-medium text-text-secondary sm:text-base">
+                <p className="mt-2.5 text-sm font-medium leading-relaxed text-text-secondary sm:mt-3 sm:text-base">
                   {[project.role, project.period].filter(Boolean).join(" · ")}
                 </p>
               )}
 
               {project.description && (
-                <p className="glass-panel-soft mt-5 rounded-2xl px-4 py-3.5 text-base leading-relaxed text-text-secondary">
+                <p className="glass-panel-soft mt-4 rounded-2xl px-4 py-3.5 text-[0.9375rem] leading-[1.75] text-text-secondary sm:mt-5 sm:text-base sm:leading-relaxed">
                   {project.description}
                 </p>
               )}
@@ -371,7 +370,7 @@ function CaseStudyRow({
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white shadow-md shadow-green/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-lg hover:shadow-green/35 hover:gap-3"
+                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white shadow-md shadow-green/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-lg hover:shadow-green/35 sm:mt-7 sm:w-fit sm:justify-start hover:gap-3"
                 >
                   {projectLinkLabel(project)}
                   <ArrowUpRight className="h-4 w-4" />
@@ -454,12 +453,15 @@ function CategorySidebar({
 }) {
   return (
     <aside className="lg:sticky lg:top-24 lg:self-start">
+      <p className="mb-2 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-text-secondary lg:hidden">
+        Filter projects
+      </p>
       <div className="lg:glass-panel lg:rounded-2xl lg:p-5">
         <p className="hidden text-xs font-semibold uppercase tracking-[0.18em] text-text-secondary lg:block">
           Browse by discipline
         </p>
         <nav
-          className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mx-0 lg:mt-3 lg:flex-col lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden"
+          className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:mx-0 lg:mt-3 lg:flex-col lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden"
           aria-label="Project categories"
         >
           {projectCategories.map((cat) => {
@@ -540,19 +542,19 @@ export function Projects() {
       />
 
       <SectionIntro section="projects" id="projects-title">
-        <div className="flex flex-wrap items-center justify-center gap-2.5">
-          <span className="glass-chip rounded-full px-4 py-2 text-sm font-medium text-text">
+        <div className="flex flex-wrap items-center justify-center gap-2 px-1 sm:gap-2.5">
+          <span className="glass-chip rounded-full px-3 py-1.5 text-xs font-medium text-text sm:px-4 sm:py-2 sm:text-sm">
             {projects.length} total projects
           </span>
-          <span className="glass-chip rounded-full border-green/15 px-4 py-2 text-sm font-medium text-green-dark">
+          <span className="glass-chip rounded-full border-green/15 px-3 py-1.5 text-xs font-medium text-green-dark sm:px-4 sm:py-2 sm:text-sm">
             {totalFeatured} featured case studies
           </span>
         </div>
       </SectionIntro>
 
       <SectionContent width="wide" className="relative">
-        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[minmax(0,16rem)_1fr] lg:gap-12 xl:grid-cols-[minmax(0,17.5rem)_1fr] xl:gap-14">
-          <ScrollReveal delay={0.05} className="order-2 lg:order-1">
+        <div className="grid gap-5 sm:gap-8 lg:grid-cols-[minmax(0,16rem)_1fr] lg:gap-12 xl:grid-cols-[minmax(0,17.5rem)_1fr] xl:gap-14">
+          <ScrollReveal delay={0.05} className="order-1">
             <CategorySidebar
               activeCategory={activeCategory}
               onSelect={setActiveCategory}
@@ -560,7 +562,7 @@ export function Projects() {
             />
           </ScrollReveal>
 
-          <div className="order-1 min-w-0 lg:order-2">
+          <div className="order-2 min-w-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeCategory}
