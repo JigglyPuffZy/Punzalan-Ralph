@@ -5,13 +5,10 @@ import doctorSanti from "../assets/doctor santi web.png";
 import keaBabiesVideo from "../assets/SampleTas-KeaBabies.mp4";
 import laborlinkzMobile from "../assets/LaborLinkz.png";
 import laborlinkzUi from "../assets/LaborLinkz Figma.png";
-import lashonharaVideo from "../assets/LASHONHARA_v5.mp4";
-import disorderVideo from "../assets/THEY TOLD ME I HAD A DISORDER.mp4";
 import marianPottery from "../assets/Marian's.png";
 import plantoUi from "../assets/planto web.png";
 import plantpalUi from "../assets/Plantpal.png";
 import quizWhirl from "../assets/QuizWHirl.png";
-import sellingCourseVideo from "../assets/SellingCourse_YouTubeLongForm.mp4";
 import sourcingAnalysis from "../assets/sourcing analysis web.png";
 import triregMobile from "../assets/Trireg mobile.png";
 import triregUi from "../assets/trireg mobile figma.png";
@@ -21,7 +18,6 @@ import vertereWeb from "../assets/vertere web.png";
 import vtrackMobile from "../assets/Vtrack mobile.png";
 import vtrackUi from "../assets/Vtrack mobile figma.png";
 import vtrackWeb from "../assets/vtrack web dashboard.png";
-import webhouseVideo from "../assets/WebhouseTrial_2.mp4";
 
 /** Project preview images keyed by project id */
 export const projectImages: Record<string, string> = {
@@ -49,13 +45,9 @@ export const projectImages: Record<string, string> = {
   planto: plantoUi,
 };
 
-/** Video previews keyed by project id */
+/** Video previews keyed by project id (large files kept local only) */
 export const projectVideos: Record<string, string> = {
   "kea-babies": keaBabiesVideo,
-  "selling-course": sellingCourseVideo,
-  "disorder-doc": disorderVideo,
-  "webhouse-trial": webhouseVideo,
-  lashonhara: lashonharaVideo,
 };
 
 export function getProjectImage(projectId: string) {
