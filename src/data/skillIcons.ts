@@ -26,7 +26,7 @@ export const skillBrands: Record<string, SkillBrand> = {
     accent: "#F24E1E",
   },
   Canva: {
-    icon: si("canva", "00C4CC"),
+    icon: favicon("canva.com"),
     url: "https://www.canva.com",
     domain: "canva.com",
     accent: "#00C4CC",

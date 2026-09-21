@@ -53,7 +53,7 @@ function getPreviewSizeClass(
     : "aspect-[4/3] min-h-[88px] rounded-md sm:min-h-[100px]";
 }
 
-function getPreviewImageClass(project: Project, variant: "hero" | "card" | "thumb") {
+function getPreviewImageClass(project: Project, _variant: "hero" | "card" | "thumb") {
   const fitContain =
     project.category === "mobile" ||
     project.category === "uiux" ||
@@ -467,7 +467,7 @@ function CategoryFilterNav({
       className={cn(
         "flex gap-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
         layout === "horizontal"
-          ? "-mx-1 overflow-x-auto px-1 pb-0.5"
+          ? "-mx-1 snap-x snap-mandatory overflow-x-auto scroll-pl-4 px-1 pb-0.5"
           : "mx-0 mt-3 flex-col overflow-visible px-0 pb-0",
       )}
       aria-label="Project categories"
@@ -482,7 +482,7 @@ function CategoryFilterNav({
             type="button"
             onClick={() => onSelect(cat.id)}
             className={cn(
-              "relative flex shrink-0 items-center gap-2 overflow-hidden rounded-full px-3.5 py-2 text-left text-sm font-medium transition-all duration-300 sm:px-4 sm:py-2.5",
+              "relative flex shrink-0 snap-start items-center gap-2 overflow-hidden rounded-full px-3.5 py-2 text-left text-sm font-medium transition-all duration-300 sm:px-4 sm:py-2.5",
               layout === "vertical" && "w-full rounded-xl py-3",
               isActive
                 ? "bg-green text-white shadow-md shadow-green/25"
@@ -569,7 +569,6 @@ export function Projects() {
 
   return (
     <SectionShell id="projects" variant="muted" className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 dot-grid opacity-[0.15]" aria-hidden="true" />
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_50%_-15%,rgba(34,197,94,0.07),transparent)]"
         aria-hidden="true"
@@ -586,7 +585,7 @@ export function Projects() {
         </div>
       </SectionIntro>
 
-      <div className="sticky top-[4.75rem] z-30 -mx-1 border-y border-border/50 bg-off-white/95 px-1 py-3 backdrop-blur-md sm:top-[5.25rem] lg:hidden">
+      <div className="sticky top-[4.75rem] z-30 -mx-[clamp(1.25rem,4vw,2rem)] border-y border-border/50 bg-off-white/95 px-[clamp(1.25rem,4vw,2rem)] py-3 backdrop-blur-md sm:top-[5.25rem] lg:hidden">
         <CategoryFilterNav
           activeCategory={activeCategory}
           onSelect={setActiveCategory}

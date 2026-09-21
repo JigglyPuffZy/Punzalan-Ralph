@@ -57,7 +57,7 @@ function RolePickerItem({
       aria-label={`${role.title} at ${role.company}, ${role.period}`}
       onClick={() => onSelect(role.id)}
       className={cn(
-        "group flex min-w-[240px] shrink-0 items-center gap-3 rounded-2xl border bg-white p-3 text-left shadow-sm transition-all duration-300 sm:min-w-[260px] sm:p-3.5",
+        "group flex min-w-[200px] shrink-0 items-center gap-3 rounded-2xl border bg-white p-3 text-left shadow-sm transition-all duration-300 sm:min-w-[240px] md:min-w-[260px] sm:p-3.5",
         isActive
           ? "border-green/30 shadow-md shadow-green/10 ring-1 ring-green/15"
           : "border-border/70 hover:border-green/20 hover:shadow-md hover:shadow-green/5",
@@ -133,7 +133,7 @@ export function Experience() {
             type="button"
             aria-label="Previous role"
             onClick={goPrev}
-            className="absolute left-0 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/70 bg-white text-text-secondary shadow-sm transition-colors hover:border-green/25 hover:text-green-dark"
+            className="absolute left-0 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/70 bg-white text-text-secondary shadow-sm transition-colors hover:border-green/25 hover:text-green-dark sm:flex"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
@@ -142,12 +142,12 @@ export function Experience() {
             type="button"
             aria-label="Next role"
             onClick={goNext}
-            className="absolute right-0 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/70 bg-white text-text-secondary shadow-sm transition-colors hover:border-green/25 hover:text-green-dark"
+            className="absolute right-0 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/70 bg-white text-text-secondary shadow-sm transition-colors hover:border-green/25 hover:text-green-dark sm:flex"
           >
             <ChevronRight className="h-4 w-4" />
           </button>
 
-          <div className="exp-picker-viewport overflow-hidden px-10 sm:px-12">
+          <div className="exp-picker-viewport overflow-hidden px-2 sm:px-12">
             <div className="exp-picker-track flex w-max flex-nowrap gap-3 pb-1">
               {carouselRoles.map((role, index) => (
                 <RolePickerItem
@@ -249,7 +249,7 @@ export function Experience() {
                   download={resumeDownloadName}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-green/20 bg-white px-4 py-2.5 text-sm font-semibold text-text shadow-sm transition-all hover:border-green/35 hover:bg-green-pale hover:text-green-dark hover:shadow-md hover:shadow-green/10 sm:px-5 sm:py-3"
+                  className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-full border border-green/20 bg-white px-4 py-2.5 text-sm font-semibold text-text shadow-sm transition-all hover:border-green/35 hover:bg-green-pale hover:text-green-dark hover:shadow-md hover:shadow-green/10 sm:w-auto sm:px-5 sm:py-3"
                 >
                   <Download className="h-4 w-4 shrink-0" strokeWidth={2} />
                   Download Resume

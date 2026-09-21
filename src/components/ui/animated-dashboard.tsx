@@ -83,12 +83,14 @@ export function AnimatedDashboard({ compact = false }: AnimatedDashboardProps) {
             </defs>
 
             <motion.path
+              d={areaPaths[0]}
               fill="url(#areaGrad)"
               animate={{ d: areaPaths }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             />
 
             <motion.path
+              d={linePaths[0]}
               fill="none"
               stroke="#22c55e"
               strokeWidth="2"
@@ -100,6 +102,8 @@ export function AnimatedDashboard({ compact = false }: AnimatedDashboardProps) {
 
             <motion.circle
               r="3"
+              cx={144}
+              cy={36}
               fill="#16a34a"
               stroke="white"
               strokeWidth="1.5"

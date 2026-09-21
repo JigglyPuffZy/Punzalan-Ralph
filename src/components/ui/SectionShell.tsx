@@ -25,7 +25,7 @@ export function SectionShell({
         className,
       )}
     >
-      <div className="section-container">{children}</div>
+      <div className="section-container min-w-0">{children}</div>
     </section>
   );
 }
@@ -51,7 +51,7 @@ export function SectionContent({
   width = "content",
 }: SectionContentProps) {
   return (
-    <div className={`relative ${contentWidthClass[width]} ${className}`.trim()}>
+    <div className={`relative min-w-0 ${contentWidthClass[width]} ${className}`.trim()}>
       {children}
     </div>
   );
@@ -96,9 +96,7 @@ export function SectionHeader({
     >
       {eyebrow && (
         <div className="section-header-eyebrow">
-          <span className="section-header-line" aria-hidden="true" />
           <span className="section-header-badge">{eyebrow}</span>
-          <span className="section-header-line" aria-hidden="true" />
         </div>
       )}
 
@@ -110,8 +108,6 @@ export function SectionHeader({
           {title}
         </h2>
       ) : null}
-
-      <div className="section-header-mark" aria-hidden="true" />
 
       {subtitle ? (
         <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg">
@@ -134,7 +130,7 @@ interface SectionIntroProps {
   children?: ReactNode;
 }
 
-/** Unified section header — same eyebrow chip, title, mark, and subtitle on every section */
+/** Unified section header — same eyebrow chip, title, and subtitle on every section */
 export function SectionIntro({
   section,
   id,

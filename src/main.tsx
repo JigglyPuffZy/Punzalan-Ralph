@@ -4,6 +4,14 @@ import App from "./App";
 import { ThemeProvider } from "./context/ThemeContext";
 import "./index.css";
 
+if ("serviceWorker" in navigator) {
+  void navigator.serviceWorker.getRegistrations().then((registrations) => {
+    registrations.forEach((registration) => {
+      void registration.unregister();
+    });
+  });
+}
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider>

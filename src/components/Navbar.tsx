@@ -69,10 +69,10 @@ export function Navbar() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-[100] px-4 pt-3 sm:px-5 sm:pt-4">
+      <header className="fixed inset-x-0 top-0 z-[100] px-4 pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-5 sm:pt-[max(1rem,env(safe-area-inset-top))]">
         <div
           className={cn(
-            "section-container !max-w-[76rem] !px-0 transition-all duration-300",
+            "section-container min-w-0 !max-w-[76rem] transition-all duration-300",
           )}
         >
           <div
@@ -132,7 +132,7 @@ export function Navbar() {
             <div className="flex w-full items-center justify-between xl:hidden">
               <ThemeToggle />
 
-              <BrandLogo className="absolute left-1/2 -translate-x-1/2" />
+              <BrandLogo className="absolute left-1/2 max-w-[38%] -translate-x-1/2" />
 
               <button
                 type="button"

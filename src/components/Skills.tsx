@@ -42,15 +42,6 @@ export function Skills() {
   return (
     <SectionShell id="skills" variant="muted" className="relative overflow-x-clip">
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.4] dark:opacity-20"
-        aria-hidden="true"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(148,163,184,0.32) 1px, transparent 0)",
-          backgroundSize: "22px 22px",
-        }}
-      />
-      <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_50%_-5%,rgba(34,197,94,0.08),transparent_65%)]"
         aria-hidden="true"
       />

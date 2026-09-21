@@ -118,7 +118,7 @@ export function SectionHeading({
       eyebrow={eyebrow}
       title={title}
       subtitle={subtitle}
-      className={`${align === "left" ? "!text-left [&_.section-header-eyebrow]:!justify-start [&_.section-header-mark]:!mx-0" : ""} ${className}`.trim()}
+      className={`${align === "left" ? "!text-left [&_.section-header-eyebrow]:!justify-start" : ""} ${className}`.trim()}
     />
   );
 }

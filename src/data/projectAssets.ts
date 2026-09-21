@@ -1,7 +1,10 @@
 import a7Thumbnail from "../assets/a7 thumbnail.png";
 import arcUi from "../assets/ARC.png";
+import catcalThumbnail from "../assets/catcal thumbnail.png";
 import cestDashboard from "../assets/cest dashboard web.png";
 import doctorSanti from "../assets/doctor santi web.png";
+import hirayaThumbnail from "../assets/hiraya thumbnail.png";
+import initifyThumbnail from "../assets/initify thumbnail.png";
 import keaBabiesVideo from "../assets/SampleTas-KeaBabies.mp4";
 import laborlinkzMobile from "../assets/LaborLinkz.png";
 import laborlinkzUi from "../assets/LaborLinkz Figma.png";
@@ -30,6 +33,9 @@ export const projectImages: Record<string, string> = {
   "trireg-mobile": triregMobile,
   "vtrack-mobile": vtrackMobile,
   laborlinkz: laborlinkzMobile,
+  initify: initifyThumbnail,
+  catcal: catcalThumbnail,
+  hiraya: hirayaThumbnail,
   "ultimate-led": ultimateLed,
   vertere: vertereWeb,
   "a7-recruitment": a7Thumbnail,

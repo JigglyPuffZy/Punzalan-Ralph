@@ -59,7 +59,7 @@ export function AnimatedMobileApp({ compact = false }: AnimatedMobileAppProps) {
   return (
     <div
       className={`overflow-hidden rounded-[1.6rem] border-[3px] border-text/10 bg-white shadow-2xl shadow-green/15 ring-1 ring-green/20 ${
-        compact ? "w-[118px] sm:w-[128px]" : "w-[130px] sm:w-[142px]"
+        compact ? "w-[96px] max-[380px]:w-[88px] sm:w-[118px]" : "w-[130px] sm:w-[142px]"
       }`}
     >
       {/* Status bar / notch */}

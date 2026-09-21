@@ -69,6 +69,39 @@ export const projects: Project[] = [
     accentSecondary: "#F8FAFC",
   },
   {
+    id: "initify",
+    title: "Initify",
+    role: "UI/UX Designer & Front-End Developer",
+    category: "mobile",
+    description:
+      "Mobile decision-support app for Tuguegarao City—heat-risk alerts, health profiles, emergency hotlines, and multilingual check-ins in one polished interface.",
+    featured: true,
+    accent: "#2563EB",
+    accentSecondary: "#EFF6FF",
+  },
+  {
+    id: "catcal",
+    title: "CatCal",
+    role: "UI/UX Designer & Front-End Developer",
+    category: "mobile",
+    description:
+      "Smart nutrition app for cats—QR registration, MER coefficient tracking, calorie breakdowns, and multi-cat dashboards with a clean dark UI.",
+    featured: true,
+    accent: "#22C55E",
+    accentSecondary: "#0F172A",
+  },
+  {
+    id: "hiraya",
+    title: "Hiraya",
+    role: "UI/UX Designer & Front-End Developer",
+    category: "mobile",
+    description:
+      "Heat safety companion for Tuguegarao—personalized risk scores from live weather, daily check-ins, and health profile setup for safer days outdoors.",
+    featured: true,
+    accent: "#F97316",
+    accentSecondary: "#0F172A",
+  },
+  {
     id: "marian-pottery",
     title: "Marian's Pottery",
     role: "React JS Developer",

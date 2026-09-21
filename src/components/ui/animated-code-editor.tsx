@@ -286,7 +286,7 @@ export function AnimatedCodeEditor({
   return (
     <div
       className={`overflow-hidden rounded-2xl border border-slate-700/80 bg-[#0d1117] shadow-2xl shadow-green/20 ring-1 ring-green/25 ${
-        compact ? "w-[168px] sm:w-[178px] lg:w-[188px]" : "w-[180px] sm:w-[200px] lg:w-[220px]"
+        compact ? "w-[132px] max-[380px]:w-[120px] sm:w-[168px] lg:w-[188px]" : "w-[180px] sm:w-[200px] lg:w-[220px]"
       }`}
     >
       <div className="flex items-center gap-2 border-b border-slate-700/60 bg-[#161b22] px-2.5 py-2">

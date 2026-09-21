@@ -23,16 +23,15 @@ function HeroSocialLinks() {
 
 export function Hero() {
   return (
-    <section id="home" className="relative scroll-mt-[5.5rem] min-h-[100svh] overflow-hidden bg-white pt-[5rem] sm:pt-[5.5rem]">
+    <section id="home" className="relative scroll-mt-[5.5rem] min-h-0 overflow-hidden bg-white pt-[5rem] sm:min-h-[100svh] sm:pt-[5.5rem]">
       <div className="pointer-events-none absolute inset-0 mesh-green" aria-hidden="true">
         <div className="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-green-pale/70 blur-3xl sm:h-96 sm:w-96" />
         <div className="absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-green/5 blur-3xl" />
-        <div className="dot-grid absolute inset-0 opacity-[0.28]" />
       </div>
 
       <HeroFloatingCardsDesktop />
 
-      <div className="section-container relative z-10 flex min-h-[calc(100svh-5rem)] items-center justify-center pb-8 sm:min-h-[calc(100svh-5.5rem)] sm:pb-10">
+      <div className="section-container relative z-10 flex min-h-0 items-center justify-center py-8 sm:min-h-[calc(100svh-5.5rem)] sm:py-10">
         <div className="section-content-hero text-center">
           <motion.p
             className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-green-dark sm:text-xs sm:tracking-[0.25em]"

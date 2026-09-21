@@ -127,7 +127,7 @@ export function HeroFloatingCardsDesktop() {
 export function HeroFloatingCardsMobile() {
   return (
     <div
-      className="relative mx-auto mt-12 flex w-full max-w-sm items-start justify-center gap-8 lg:hidden"
+      className="relative mx-auto mt-6 flex w-full max-w-[280px] scale-[0.88] items-start justify-center gap-4 sm:mt-10 sm:max-w-sm sm:scale-100 sm:gap-8 lg:hidden"
       aria-hidden="true"
     >
       <motion.div
