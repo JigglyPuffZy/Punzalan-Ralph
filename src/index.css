@@ -133,47 +133,30 @@
       radial-gradient(ellipse 50% 40% at 50% 100%, rgba(240, 253, 244, 0.9), transparent);
   }
 
-  @keyframes exp-picker-marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
-
   .exp-picker-viewport {
-    overflow-x: clip;
-    contain: layout paint;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0.5rem;
+    scrollbar-width: none;
+    touch-action: pan-x;
     mask-image: linear-gradient(
       90deg,
       transparent 0%,
-      black 8%,
-      black 92%,
+      black 6%,
+      black 94%,
       transparent 100%
     );
   }
 
-  .exp-picker-track {
-    animation: exp-picker-marquee 45s linear infinite;
-    will-change: transform;
+  .exp-picker-viewport::-webkit-scrollbar {
+    display: none;
   }
 
-  .exp-picker-viewport:hover .exp-picker-track,
-  .exp-picker-viewport:focus-within .exp-picker-track {
-    animation-play-state: paused;
-  }
-
-  @media (hover: none) {
-    .exp-picker-track {
-      animation-play-state: paused;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .exp-picker-track {
-      animation: none;
-    }
+  .exp-picker-item {
+    scroll-snap-align: start;
   }
 
   @keyframes spin-slow {

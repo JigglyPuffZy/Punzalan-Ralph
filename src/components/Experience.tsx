@@ -13,7 +13,7 @@ import {
   Rocket,
   Video,
 } from "lucide-react";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import type { ExperienceAchievement } from "../data/experience";
 import { experienceRoles } from "../data/experience";
 import { resumeDownloadName, resumePdfUrl } from "../data/site";
@@ -57,7 +57,7 @@ function RolePickerItem({
       aria-label={`${role.title} at ${role.company}, ${role.period}`}
       onClick={() => onSelect(role.id)}
       className={cn(
-        "group flex min-w-[200px] shrink-0 items-center gap-3 rounded-2xl border bg-white p-3 text-left shadow-sm transition-all duration-300 sm:min-w-[240px] md:min-w-[260px] sm:p-3.5",
+        "exp-picker-item group flex min-w-[200px] shrink-0 items-center gap-3 rounded-2xl border bg-white p-3 text-left shadow-sm transition-all duration-300 sm:min-w-[240px] md:min-w-[260px] sm:p-3.5",
         isActive
           ? "border-green/30 shadow-md shadow-green/10 ring-1 ring-green/15"
           : "border-border/70 hover:border-green/20 hover:shadow-md hover:shadow-green/5",
@@ -83,7 +83,7 @@ function RolePickerItem({
 
 export function Experience() {
   const { activeExperience, activeExperienceId, setActiveExperienceId } = useExperience();
-  const carouselRoles = [...experienceRoles, ...experienceRoles];
+  const pickerViewportRef = useRef<HTMLDivElement>(null);
 
   const activeIndex = experienceRoles.findIndex((role) => role.id === activeExperienceId);
   const safeIndex = activeIndex >= 0 ? activeIndex : 0;
@@ -117,6 +117,22 @@ export function Experience() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [goNext, goPrev]);
 
+  useEffect(() => {
+    const viewport = pickerViewportRef.current;
+    if (!viewport) return;
+
+    const activeButton = viewport.querySelector<HTMLElement>(
+      `[data-role-id="${activeExperienceId}"]`,
+    );
+    if (!activeButton) return;
+
+    activeButton.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest",
+    });
+  }, [activeExperienceId]);
+
   return (
     <SectionShell id="experience" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -133,7 +149,7 @@ export function Experience() {
             type="button"
             aria-label="Previous role"
             onClick={goPrev}
-            className="absolute left-0 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/70 bg-white text-text-secondary shadow-sm transition-colors hover:border-green/25 hover:text-green-dark sm:flex"
+            className="absolute left-0 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/70 bg-white text-text-secondary shadow-sm transition-colors hover:border-green/25 hover:text-green-dark"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
@@ -142,16 +158,16 @@ export function Experience() {
             type="button"
             aria-label="Next role"
             onClick={goNext}
-            className="absolute right-0 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/70 bg-white text-text-secondary shadow-sm transition-colors hover:border-green/25 hover:text-green-dark sm:flex"
+            className="absolute right-0 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/70 bg-white text-text-secondary shadow-sm transition-colors hover:border-green/25 hover:text-green-dark"
           >
             <ChevronRight className="h-4 w-4" />
           </button>
 
-          <div className="exp-picker-viewport overflow-hidden px-2 sm:px-12">
-            <div className="exp-picker-track flex w-max flex-nowrap gap-3 pb-1">
-              {carouselRoles.map((role, index) => (
+          <div ref={pickerViewportRef} className="exp-picker-viewport px-10 sm:px-12">
+            <div className="flex w-max flex-nowrap gap-3 pb-1">
+              {experienceRoles.map((role) => (
                 <RolePickerItem
-                  key={`${role.id}-${index}`}
+                  key={role.id}
                   role={role}
                   isActive={activeExperienceId === role.id}
                   onSelect={setActiveExperienceId}
