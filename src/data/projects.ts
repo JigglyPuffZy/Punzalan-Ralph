@@ -66,6 +66,7 @@ export const projects: Project[] = [
     description:
       "Admin workspace for DOST Region II CEST program—project records, analytics, monitoring, reports, trainings, and guest access in one dashboard.",
     featured: true,
+    url: "https://cest-dashboarddd.vercel.app/",
     accent: "#22C55E",
     accentSecondary: "#F8FAFC",
   },
@@ -90,8 +91,22 @@ export const projects: Project[] = [
     description:
       "Case management dashboard for DOST OSG—live case overview, status tracking, hearing calendar, and search across dockets and remarks.",
     featured: true,
+    url: "https://osg-dost.vercel.app/",
     accent: "#2563EB",
     accentSecondary: "#EFF6FF",
+  },
+  {
+    id: "training-evaluation",
+    title: "Training Evaluation Analytics",
+    role: "Web Developer",
+    period: "2026",
+    category: "web",
+    description:
+      "DOST Region II dashboard for training evaluation analytics—track feedback, review program results, and monitor training outcomes in one place.",
+    featured: true,
+    url: "https://evaluation-tracker.vercel.app/",
+    accent: "#0891B2",
+    accentSecondary: "#ECFEFF",
   },
   {
     id: "initify",

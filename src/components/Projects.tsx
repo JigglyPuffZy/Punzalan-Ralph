@@ -306,6 +306,7 @@ const categoryLabels: Record<ProjectCategory, string> = {
 function projectLinkLabel(project: Project) {
   if (project.category === "uiux") return "View in Figma";
   if (project.category === "cms") return "Visit site";
+  if (project.category === "web") return "View website";
   return "View project";
 }
 
