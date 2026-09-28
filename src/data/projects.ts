@@ -79,6 +79,7 @@ export const projects: Project[] = [
     description:
       "Gamified coding academy with guided paths, quest-based lessons, XP and streak tracking, and a login flow for continuing learning progress.",
     featured: true,
+    url: "https://code-quest-steel-five.vercel.app/",
     accent: "#7C3AED",
     accentSecondary: "#F5F3FF",
   },
