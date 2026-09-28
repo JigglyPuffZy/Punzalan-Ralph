@@ -133,30 +133,64 @@
       radial-gradient(ellipse 50% 40% at 50% 100%, rgba(240, 253, 244, 0.9), transparent);
   }
 
+  @keyframes exp-picker-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
   .exp-picker-viewport {
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 0.5rem;
-    scrollbar-width: none;
-    touch-action: pan-x;
+    overflow: hidden;
     mask-image: linear-gradient(
       90deg,
       transparent 0%,
-      black 6%,
-      black 94%,
+      black 8%,
+      black 92%,
       transparent 100%
     );
   }
 
-  .exp-picker-viewport::-webkit-scrollbar {
-    display: none;
+  .exp-picker-track {
+    display: flex;
+    width: max-content;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    padding-bottom: 0.25rem;
+    animation: exp-picker-marquee 38s linear infinite;
+    will-change: transform;
   }
 
-  .exp-picker-item {
-    scroll-snap-align: start;
+  .exp-picker-viewport:hover .exp-picker-track,
+  .exp-picker-viewport:focus-within .exp-picker-track,
+  .exp-picker-viewport:active .exp-picker-track {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .exp-picker-viewport {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      mask-image: none;
+    }
+
+    .exp-picker-viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    .exp-picker-track {
+      animation: none;
+      will-change: auto;
+    }
+
+    .exp-picker-item {
+      scroll-snap-align: center;
+    }
   }
 
   @keyframes spin-slow {

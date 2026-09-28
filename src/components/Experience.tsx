@@ -84,6 +84,7 @@ function RolePickerItem({
 export function Experience() {
   const { activeExperience, activeExperienceId, setActiveExperienceId } = useExperience();
   const pickerViewportRef = useRef<HTMLDivElement>(null);
+  const carouselRoles = [...experienceRoles, ...experienceRoles];
 
   const activeIndex = experienceRoles.findIndex((role) => role.id === activeExperienceId);
   const safeIndex = activeIndex >= 0 ? activeIndex : 0;
@@ -121,16 +122,13 @@ export function Experience() {
     const viewport = pickerViewportRef.current;
     if (!viewport) return;
 
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reducedMotion) return;
+
     const activeButton = viewport.querySelector<HTMLElement>(
       `[data-role-id="${activeExperienceId}"]`,
     );
-    if (!activeButton) return;
-
-    activeButton.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "nearest",
-    });
+    activeButton?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
   }, [activeExperienceId]);
 
   return (
@@ -164,10 +162,10 @@ export function Experience() {
           </button>
 
           <div ref={pickerViewportRef} className="exp-picker-viewport px-10 sm:px-12">
-            <div className="flex w-max flex-nowrap gap-3 pb-1">
-              {experienceRoles.map((role) => (
+            <div className="exp-picker-track">
+              {carouselRoles.map((role, index) => (
                 <RolePickerItem
-                  key={role.id}
+                  key={`${role.id}-${index}`}
                   role={role}
                   isActive={activeExperienceId === role.id}
                   onSelect={setActiveExperienceId}
