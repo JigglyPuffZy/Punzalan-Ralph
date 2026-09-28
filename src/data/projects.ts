@@ -77,6 +77,7 @@ export const projects: Project[] = [
     category: "web",
     description:
       "Gamified coding academy with guided paths, quest-based lessons, XP and streak tracking, and a login flow for continuing learning progress.",
+    featured: true,
     accent: "#7C3AED",
     accentSecondary: "#F5F3FF",
   },
@@ -88,6 +89,7 @@ export const projects: Project[] = [
     category: "web",
     description:
       "Case management dashboard for DOST OSG—live case overview, status tracking, hearing calendar, and search across dockets and remarks.",
+    featured: true,
     accent: "#2563EB",
     accentSecondary: "#EFF6FF",
   },
