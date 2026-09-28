@@ -59,14 +59,37 @@ export const projects: Project[] = [
   },
   {
     id: "cest-dashboard",
-    title: "CEST Dashboard",
+    title: "CEST 2.0",
     role: "Web Developer",
-    period: "April 2026 – June 2026",
+    period: "March 2026 – June 2026",
     category: "web",
-    description: "Data visualization dashboard for DOST science program reporting.",
+    description:
+      "Admin workspace for DOST Region II CEST program—project records, analytics, monitoring, reports, trainings, and guest access in one dashboard.",
     featured: true,
     accent: "#22C55E",
     accentSecondary: "#F8FAFC",
+  },
+  {
+    id: "dev-ladder",
+    title: "Dev Ladder Academy",
+    role: "Web Developer",
+    period: "2026",
+    category: "web",
+    description:
+      "Gamified coding academy with guided paths, quest-based lessons, XP and streak tracking, and a login flow for continuing learning progress.",
+    accent: "#7C3AED",
+    accentSecondary: "#F5F3FF",
+  },
+  {
+    id: "osg-dost",
+    title: "OSG DOST Task Force",
+    role: "Web Developer",
+    period: "2026",
+    category: "web",
+    description:
+      "Case management dashboard for DOST OSG—live case overview, status tracking, hearing calendar, and search across dockets and remarks.",
+    accent: "#2563EB",
+    accentSecondary: "#EFF6FF",
   },
   {
     id: "initify",

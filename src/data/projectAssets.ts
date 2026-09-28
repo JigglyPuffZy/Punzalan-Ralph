@@ -2,6 +2,8 @@ import a7Thumbnail from "../assets/a7 thumbnail.png";
 import arcUi from "../assets/ARC.png";
 import catcalThumbnail from "../assets/catcal thumbnail.png";
 import cestDashboard from "../assets/cest dashboard web.png";
+import devLadder from "../assets/DevLadder.png";
+import osgDost from "../assets/OSG DOST.png";
 import doctorSanti from "../assets/doctor santi web.png";
 import hirayaThumbnail from "../assets/hiraya thumbnail.png";
 import initifyThumbnail from "../assets/initify thumbnail.png";
@@ -28,6 +30,8 @@ export const projectImages: Record<string, string> = {
   "vtrack-web": vtrackWeb,
   "doctor-santi": doctorSanti,
   "cest-dashboard": cestDashboard,
+  "dev-ladder": devLadder,
+  "osg-dost": osgDost,
   "marian-pottery": marianPottery,
   "quiz-whirl": quizWhirl,
   "trireg-mobile": triregMobile,
